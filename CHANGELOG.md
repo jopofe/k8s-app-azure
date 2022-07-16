@@ -13,3 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Se crea la carpeta pozuelo que contiene información importante para el desarrollo del caso práctico.
 - Se crea la carpeta pozuelo/scripts que contiene scripts de relevancia para el desarrollo de la práctica.
 - Se añade el fichero terraformInstall.sh que contiene los pasos de ejecución para la instalación de TERRAFORM en un Docker container de Ubuntu 20.04.4.
+- Se añade el fichero runUbuntuDocker.sh que ejecutará el container Ubuntu 20.04.4.
+
+## [1.2.0] - 2022-07-16
+### Added
+- Se crea script de instalación de azure-cli para el container de Ubuntu desplegado.
