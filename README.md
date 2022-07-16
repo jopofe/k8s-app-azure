@@ -1,5 +1,5 @@
 # k8s-app-azure
-UNIR 2022
+UNIR 2022 - Jorge Pozuelo Fernández
 
 Crear infraestructura en Azure bajo el modelo de Infraestructura como código ( IaC ) utilizando Terraform
 Automatizar las instalaciones y configuraciones del entorno utilizando Ansible como herramienta de gestión de la configuración.
@@ -72,7 +72,6 @@ variable "public_key_path" {
   description = "Ruta para la clave pública de acceso a las instancias"
   default = "~/.ssh/id_rsa.pub" # o la ruta correspondiente
 }
-a
 
 variable "ssh_user" {
   type = string
@@ -85,4 +84,11 @@ variable "ssh_user" {
 
 * recursos.tf - Uno o más ficheros definiendo los objectos a crear por Terraform.
 
+# PASOS
+
 Se crea el directorio **pozuelo** que contiene información importante para el desarrollo del caso práctico.
+1. Despliegue Docker container Ubuntu 20.04.4
+2. Instalación TERRAFORM
+3. Instalación azure-cli
+
+4. Despliegue infra TERRAFORM.

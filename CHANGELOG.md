@@ -12,9 +12,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Se crea la carpeta pozuelo que contiene información importante para el desarrollo del caso práctico.
 - Se crea la carpeta pozuelo/scripts que contiene scripts de relevancia para el desarrollo de la práctica.
-- Se añade el fichero terraformInstall.sh que contiene los pasos de ejecución para la instalación de TERRAFORM en un Docker container de Ubuntu 20.04.4.
-- Se añade el fichero runUbuntuDocker.sh que ejecutará el container Ubuntu 20.04.4.
+- Se añade el fichero "terraformInstall.sh" que contiene los pasos de ejecución para la instalación de TERRAFORM en un Docker container de Ubuntu 20.04.4.
+- Se añade el fichero "runUbuntuDocker.sh" que ejecutará el container Ubuntu 20.04.4.
 
 ## [1.2.0] - 2022-07-16
 ### Added
-- Se crea script de instalación de azure-cli para el container de Ubuntu desplegado.
+- Se crea script de instalación "azureCLIInstall" de azure-cli para el container de Ubuntu desplegado.
+
+## [2.0.0] - 2022-07-16
+### Added
+- Se crea script "azureCLILogin.sh" para facilitar el login en AZ.
+- Se crea script "sshKeyGen.sh" para la generación de las keys. La pública se pasará como variable a través de TERRAFORM a las nuevas máquinas.
+- Se crea script "terraformRun.sh" con los pasos de ejecución de TERRAFORM siguiendo las buenas prácticas.
+- Se crea carpeta de logs en /pozuelo/logs
+
+### Changed
+- Se añaden datos en README.md.
+- Se modifican los ficheros relativos a terraform. Despliegue de una única VM en AZURE mediante TERRAFORM.
