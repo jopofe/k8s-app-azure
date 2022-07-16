@@ -2,11 +2,8 @@
 UNIR 2022
 
 Crear infraestructura en Azure bajo el modelo de Infraestructura como código ( IaC ) utilizando Terraform
-
 Automatizar las instalaciones y configuraciones del entorno utilizando Ansible como herramienta de gestión de la configuración.
-
 Instalar un cluster de Kubernetes para orquestación de contenedores.
-
 Desplegar una aplicación persistente sobre Kubernetes con almacenamiento de tipo NFS
 
 # Formato del Repositorio Git
@@ -87,3 +84,5 @@ variable "ssh_user" {
 * main.tf - Fichero que indica el proveedor y versiones a utilizar.
 
 * recursos.tf - Uno o más ficheros definiendo los objectos a crear por Terraform.
+
+Se crea el directorio **pozuelo** que contiene información importante para el desarrollo del caso práctico.
