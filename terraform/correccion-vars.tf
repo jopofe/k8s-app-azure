@@ -9,17 +9,17 @@ variable "location" {
 }
 
 variable "network_name" {
-  default = "vnet1"
+  default = "vnet-pozuelo"
 }
 
 variable "subnet_name" {
-  default = "subnet1"
+  default = "subnet-pozuelo"
 }
 
 variable "ssh_user" {
   type        = string
   description = "Usuario para hacer ssh"
-  default     = "azureuser" # Usuario
+  default     = "azureuser" # Usuario diferente de root
 }
 
 variable "public_key_path" {
@@ -31,5 +31,5 @@ variable "public_key_path" {
 variable "storage_account" {
   type        = string
   description = "Nombre para la storage account"
-  default     = "pozuelo" # Por el momento no se utiliza un storage account
+  default     = "pozuelo" # Para almacenar información del despliegue. Por el momento no se utiliza.
 }

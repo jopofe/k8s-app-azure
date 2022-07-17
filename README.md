@@ -92,3 +92,6 @@ Se crea el directorio **pozuelo** que contiene información importante para el d
 3. Instalación azure-cli
 
 4. Despliegue infra TERRAFORM.
+
+####
+- Hay que evitar incluir el fichero de providers resultado del init con TERRAFORM, ya que devolverá error al subirlo a GITHUB.

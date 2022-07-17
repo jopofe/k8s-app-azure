@@ -29,3 +29,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Se añaden datos en README.md.
 - Se modifican los ficheros relativos a terraform. Despliegue de una única VM en AZURE mediante TERRAFORM.
+
+## [2.1.0] - 2022-07-16
+### Added
+- Se realiza el despliegue de las 3 VMs necesarias para el desarrollo de la práctica. El proceso y las decisiones tomadas se incluirán en la memoria.
+- Se crea el fichero de "outputs.tf" para obtener las salidas tras la ejecución de TERRAFORM.
+- Se añaden los ficheros "node_*.tf" con los recursos de creación de cada VM por separado, para tener un orden de estructura.
+
+### Changed
+- Se modifican las variables de "correccion-vars.tf".
+- Se añaden líneas de comentarios en "terraformRun.sh".
