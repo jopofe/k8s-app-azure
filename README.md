@@ -84,14 +84,19 @@ variable "ssh_user" {
 
 * recursos.tf - Uno o más ficheros definiendo los objectos a crear por Terraform.
 
-# PASOS
+# STEPS
 
 Se crea el directorio **pozuelo** que contiene información importante para el desarrollo del caso práctico.
 1. Despliegue Docker container Ubuntu 20.04.4
 2. Instalación TERRAFORM
 3. Instalación azure-cli
 
-4. Despliegue infra TERRAFORM.
+4. VMs:
+- Selección de las máquinas a desplegar.
+- Cumplir requisitos: IP pública, CPU, RAM...
+5. Despliegue infra AZ TERRAFORM 1 VM.
+6. Despliegue infra AZ TERRAFORM 3 VMs.
 
-####
-- Hay que evitar incluir el fichero de providers resultado del init con TERRAFORM, ya que devolverá error al subirlo a GITHUB.
+# NOTAS
+
+Hay que evitar incluir el fichero de providers resultado del init con TERRAFORM, ya que devolverá error al subirlo a GITHUB.
