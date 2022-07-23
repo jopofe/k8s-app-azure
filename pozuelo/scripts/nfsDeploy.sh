@@ -1,3 +1,4 @@
+#!/bin/bash
 # Instalar y Levantar FW
 sudo dnf -y install firewalld
 sudo systemctl enable firewalld --now

@@ -1,0 +1,4 @@
+---
+# tasks file for nfs
+
+- include_tasks: nfs.yml

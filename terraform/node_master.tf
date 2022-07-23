@@ -27,7 +27,7 @@ resource "azurerm_linux_virtual_machine" "vm_master" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   size                = "Standard_F2s_v2"
-  admin_username      = "azureuser"
+  admin_username      = var.ssh_user
   network_interface_ids = [
     azurerm_network_interface.nic_master.id,
   ]

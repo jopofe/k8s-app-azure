@@ -49,3 +49,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Se renombra el archivo "terraform.log" por "singleVM.log" y se lleva a una nueva ubicación: /pozuelo/logs/terraform/
+
+## [3.0.0] - 2022-07-19
+### Added
+- Creación de scripts "vagrantRun.sh" y "vagrantInstall.sh".
+- Creación del script de instalación de ANSIBLE "ansibleInstall.sh".
+- Se crea el dichero "nfsDeploy.log" resultado del script de despliegue en VM local.
+- Creación de directorios y ficheros para el despligue de NFS con ANSIBLE, incluyendo el rol.
+
+### Changed
+- Modificación del usuario "admin_username" de las VMs a "ansible" en los ficheros de TERRAFORM.

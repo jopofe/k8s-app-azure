@@ -1,0 +1,11 @@
+# Playbook que despliega NFS
+---
+- name: 'Despliegue Cluster K8s y NFS Storage'
+  hosts: all
+  remote_user: ansible
+  become: true
+  tasks:
+    - name: 'Despliegue NFS'
+      include_role:
+        name: nfs
+      tags: nfs
