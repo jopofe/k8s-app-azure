@@ -20,3 +20,17 @@
         name: k8s
       when: inventory_hostname in groups['k8s']
       tags: k8s
+
+    # ROL MASTER
+    - name: 'Despliegue Master'
+      include_role:
+        name: master
+      when: inventory_hostname in groups['master']
+      tags: k8s
+
+    # ROL WORKER
+    - name: 'Despliegue Worker'
+      include_role:
+        name: worker
+      when: inventory_hostname in groups['worker']
+      tags: k8s

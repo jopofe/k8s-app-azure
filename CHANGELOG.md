@@ -69,3 +69,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Se modifican los ficheros de variables para establecer los hostname.
+
+## [3.2.0] - 2022-07-21
+### Added
+- Se guarda joinToken para que se pueda observar el comando ejecutado para unir un worker a un cluster.
+- Se despliega el cluster de K8s completo a través de los 4 roles.
+- Se modifica "deploy.sh".
+
+### Changed
+- Modificamos las IPs asignadas con TERRAFORM para que sean estáticas.

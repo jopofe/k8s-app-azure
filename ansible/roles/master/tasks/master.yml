@@ -3,3 +3,93 @@
 
 - hostname:
     name: "{{ masterHostname }}"
+
+# Permitir en el cortafuegos el tráfico necesario para el servicio:
+- name: Allow FW ports
+  firewalld:
+    permanent: yes
+    immediate: yes
+    port: "{{ item.port }}/{{ item.proto }}"
+    state: "{{ item.state }}"
+  with_items:
+    - {port: "6443", proto: "tcp", state: "enabled"}
+    - {port: "2379-2380", proto: "tcp", state: "enabled"}
+    - {port: "10250-10252", proto: "tcp", state: "enabled"}
+    - {port: "10255", proto: "tcp", state: "enabled"}
+    - {port: "8285", proto: "udp", state: "enabled"}
+    - {port: "8472", proto: "udp", state: "enabled"}
+
+# Al no poder hacer reload del servicio con state, lo hacemos mediante systemd
+# https://docs.ansible.com/ansible/2.5/modules/firewalld_module.html
+- name: Restart service firewalld
+  systemd:
+    name: firewalld
+    state: reloaded
+
+- name: Allow connections from WORKER node
+  firewalld:
+    rich_rule: "{{ item }}"
+    permanent: yes
+    immediate: yes
+    state: enabled
+  with_items:
+    - 'rule family=ipv4 source address=10.0.10.11/32 port port=6443 protocol=tcp accept'
+
+# Al no poder hacer reload del servicio con state, lo hacemos mediante systemd
+# https://docs.ansible.com/ansible/2.5/modules/firewalld_module.html
+- name: Restart service firewalld
+  systemd:
+    name: firewalld
+    state: reloaded
+
+- name: Configure kubeadm
+  shell: kubeadm config images pull
+
+# Instalar el plugin CNI: 
+- name: kubeadm init --pod-network-cidr=<PODS_NETWORK>/PREFIX
+  command: kubeadm init --pod-network-cidr=10.0.10.0/24
+
+- name: Generar join token
+  command: kubeadm token create --print-join-command
+  register: joinToken
+
+- name: Sacar por pantalla el token
+  debug:
+    msg: "Join Token: {{ joinToken }}"
+
+- name: Almacenar el token
+  local_action: copy content="{{ joinToken.stdout_lines[0] }}" dest="./joinToken"
+
+- name: Exportar la configuración de kubeadmin
+  shell: 
+    export KUBECONFIG=/etc/kubernetes/admin.conf
+
+# Autorizar acceso al cluster
+- name: Setup kubeconfig for root
+  command: "{{ item }}"
+  with_items:
+    - mkdir -p /root/.kube
+    - cp -i /etc/kubernetes/admin.conf /root/.kube/config
+  
+- name: Cambio de permisos
+  shell:
+    chown $(id -u):$(id -g) /root/.kube/config
+
+# Instalación SDN en AZURE
+# Permitir el tráfico en el cortafuegos del master y workers:
+# Este paso se ha añadido en el paso 10, ya que se añadieron reglas y se hizo reload.
+
+- name: Apply policy MASTER node
+  command: kubectl apply -f https://docs.projectcalico.org/manifests/canal.yaml
+
+# Reiniciamos
+# https://docs.ansible.com/ansible/2.9/modules/reboot_module.html
+- name: 'Reinicio nodo'
+  reboot:
+    pre_reboot_delay: 5
+    post_reboot_delay: 30
+    reboot_timeout: 3600
+
+# Instalación Ingress Controller (HAProxy)
+- name: 'Instalación HAProxy'
+  command: kubectl apply -f https://raw.githubusercontent.com/haproxytech/kubernetes-ingress/master/deploy/haproxy-ingress.yaml

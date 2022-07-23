@@ -13,9 +13,9 @@
         state: present
         line: "{{ item }}"
       with_items:
-      - '10.0.10.4 master.pozuelo.com '
-      - '10.0.10.5 worker.pozuelo.com'
-      - '10.0.10.6 nfs.pozuelo.com'
+      - '10.0.10.10 master.pozuelo.com '
+      - '10.0.10.11 worker.pozuelo.com'
+      - '10.0.10.12 nfs.pozuelo.com'
 
     # https://docs.ansible.com/ansible/2.9/modules/dnf_module.html
     - name: 'Upgrade all packages'

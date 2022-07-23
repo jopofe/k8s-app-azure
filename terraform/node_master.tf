@@ -1,3 +1,5 @@
+# Nodo MASTER
+
 resource "azurerm_public_ip" "ip_public_master" {
   name                = "PublicIpMaster"
   resource_group_name = azurerm_resource_group.rg.name
@@ -17,7 +19,8 @@ resource "azurerm_network_interface" "nic_master" {
   ip_configuration {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet.id
-    private_ip_address_allocation = "Dynamic"
+    private_ip_address_allocation = "Static"
+    private_ip_address            = "10.0.10.10"
     public_ip_address_id          = azurerm_public_ip.ip_public_master.id # Public IP
   }
 }
