@@ -1,3 +1,16 @@
-# Servidor NFS
+# CLUSTER K8s NODES
+[k8s]
+20.117.92.34
+20.117.90.31
+
+# MASTER NODE
+[master]
+20.117.92.34
+
+# WORKER NODE
+[worker]
+20.117.90.31
+
+# NFS NODE
 [nfs]
 20.117.94.173

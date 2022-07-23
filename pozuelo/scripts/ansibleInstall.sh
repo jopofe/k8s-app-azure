@@ -9,4 +9,6 @@ sudo apt-get install python3-pip
 python3 -m pip -V
 pip install ansible==2.9
 
+# Instalar collectiones
 ansible-galaxy collection install ansible.posix
+ansible-galaxy collection install community.general # modprobe, timezone

@@ -59,3 +59,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Modificación del usuario "admin_username" de las VMs a "ansible" en los ficheros de TERRAFORM.
+
+## [3.1.0] - 2022-07-20
+### Added
+- Creamos fichero de variables para facilitar la creación de YAML.
+- Instalamos colecciones de ANSIBLE para poder utilizar ciertos módulos.
+- Separamos "playbookCommon.yml" y "playbookDeployments.yml" para los procesos comunes y el despliegue de NFS y K8s.
+- Se consigue desplegar los requirements de K8s via ANSIBLE.
+
+### Changed
+- Se modifican los ficheros de variables para establecer los hostname.
