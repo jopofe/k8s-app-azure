@@ -1,0 +1,68 @@
+# Playbook que ejecuta los requisitos comunes
+---
+- name: 'Despliegue Requisitos Comunes'
+  hosts: all
+  remote_user: "{{ remoteUser }}"
+  become: true
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: 'Registro nombres de máquina'
+      lineinfile:
+        path: /etc/hosts
+        state: present
+        line: "{{ item }}"
+      with_items:
+      - '10.0.10.4 master.pozuelo.com '
+      - '10.0.10.5 worker.pozuelo.com'
+      - '10.0.10.6 nfs.pozuelo.com'
+
+    # https://docs.ansible.com/ansible/2.9/modules/dnf_module.html
+    - name: 'Upgrade all packages'
+      dnf:
+        name: "*"
+        state: latest
+
+    # https://docs.ansible.com/ansible/2.9/modules/timezone_module.html
+    - name: 'Set timezone to Europe/Madrid'
+      timezone:
+        name: Europe/Madrid
+
+    - name: 'Instalación Chronyd'
+      dnf:
+        name: chrony
+        state: present
+
+    - name: 'Habilitamos servicio Chronyd'
+      systemd:
+        name: chronyd
+        state: started
+        enabled: yes
+        masked: no
+
+    - name: 'Install NFS Utils'
+      dnf:
+        name:
+          - firewalld
+        state: latest
+
+    # Levantamos FW
+    - name: 'Enable firewalld'
+      systemd:
+        name: firewalld
+        state: started
+        enabled: yes
+
+    - name: Disable SELinux
+      selinux:
+        state: disabled
+      notify: Reinicio nodo
+
+  # Reiniciamos las máquinas
+  # Se hace uso de los handlers, de esta forma, si SELinux estuviese ya deshabilitado, no se ejecutaría el reinicio.
+  handlers:
+    - name: 'Reinicio nodo'
+      reboot:
+        pre_reboot_delay: 5
+        reboot_timeout: 3600
+        msg: 'Renicio del nodo tras deshabilitar SELinux'
