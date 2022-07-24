@@ -5,23 +5,12 @@
 
 # Manage Hostname
 # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/hostname_module.html
-- hostname:
+- name: Set hostname
+  hostname:
     name: "{{ nfsHostname }}"
 
-# FW ya instalado y levantado en la ejecución del PLAYBOOK
-- name: Install NFS Utils
-  dnf:
-    name:
-      - nfs-utils
-    state: latest
-
-- name: Create NFS folder
-  file:
-    path: /mnt/app
-    state: directory
-    owner: nobody
-    group: nobody
-    mode: 0777
+# FW ya instalado y levantado en la ejecución del PLAYBOOK.
+# Se debe instalar "nfs-utils", pero hay que hacerlo en todos los nodos. Por ello se ejecutó el en PLAYBOOK common.
 
 - name: Adding /etc/exports folder
   lineinfile:

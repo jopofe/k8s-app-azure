@@ -1,0 +1,38 @@
+---
+
+# tasks file for app
+
+# 1. Se crea un namespace
+- name: Creación namespace
+  shell: "kubectl create namespace pozuelo"
+
+# 2. Se comprueba que se ha creado el namespace
+
+# 3. Se crean los recursos de la aplicación:
+# 3.a. Primero hay que copiar los YAML de las aplicaciones
+- name: Copiar YAML
+  copy:
+    src: "{{ item }}"
+    dest: "/root/{{ item }}"
+    mode: '0644'
+  with_items:
+    - "{{ files }}"
+
+# 3.b. Creamos
+- name: Creación recursos
+  shell: "kubectl apply -f /root/grafana/{{ item }}"
+  with_items:
+    - "{{ files }}"
+
+# 4. Consultamos los recursos de tipo deployments,pods,services
+# 4.a.
+- name: Consulta recursos
+  shell: "kubectl get deployment,pods,services -n pozuelo"
+  register: kubectl_get_deployment
+
+# 4.b. Sacamos recursos
+- name: Resultado de consulta de recursos
+  debug:
+    msg: "{{ item.stdout_lines }}"
+  with_items:
+    - "{{ kubectl_get_deployment.results }}"

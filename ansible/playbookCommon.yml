@@ -40,11 +40,24 @@
         enabled: yes
         masked: no
 
-    - name: 'Install NFS Utils'
+    # Instalación del servicio firewalld y nfs-utils
+    # "nfs-utils" es necesario para poder montar directorios del NFS en los 3 nodos.
+    - name: Instalación firewalld y nfs-utils
       dnf:
         name:
           - firewalld
+          - nfs-utils
         state: latest
+
+    # Creación del directorio compartido. Al ser necesario en los 3 nodos, colocamos la task en el PLAYBOOK common.
+    # Ansible será el owner de la carpeta
+    - name: Creación directorio compartido por NFS
+      file:
+        path: /mnt/app
+        state: directory
+        owner: ansible
+        group: ansible
+        mode: 0777
 
     # Levantamos FW
     - name: 'Enable firewalld'

@@ -34,3 +34,11 @@
         name: worker
       when: inventory_hostname in groups['worker']
       tags: k8s
+
+    # ROL APP
+    # Acción a realizar sobre el MASTER
+    - name: Despliegue de aplicación
+      include_role:
+        name: app
+      when: inventory_hostname in groups['master']
+      tags: k8s

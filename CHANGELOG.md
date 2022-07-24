@@ -78,3 +78,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Modificamos las IPs asignadas con TERRAFORM para que sean estáticas.
+
+## [4.0.0] - 2022-07-24
+### Added
+- Se despliega el cluster de K8s completo.
+- Se despliega GRAFANA como container para ser ejecutado en el cluster, y se accede de forma correcta.
+- Se hace uso del NFS compartido para persistir los datos.
+- Se crea un nuevo rol de app en ANSIBLE para desplegar la aplicación.
+- En el rol de 'k8s' se añade el montaje del path para el NFS para las máquinas MASTER y WORKER.
+- Para poder hacer uso de los datos persistentes del NFS.
+- se crea dentro del rol de 'app' en el directorio de files, los archivos YAML necesarios para el despliegue de la aplicación GRAFANA, concretamente la última versión 9.0.4.
+
+### Changed
+- Se mergea parte del código en playbookCommon.yaml ya que la creación del directorio compartido así como la instalación de NFS utils debe realizarse en todas las máquinas.
+- Se modifica el inventario "hosts" de ANSIBLE para que se pueda acceder a las máquinas sin la confirmación de la relación de confianza entre hosts. Se sustituyen las IPs por los nombres de dominio de cada VM.

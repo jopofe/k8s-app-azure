@@ -1,7 +1,8 @@
 ---
 # tasks file for master
 
-- hostname:
+- name: Set hostname
+  hostname:
     name: "{{ masterHostname }}"
 
 # Permitir en el cortafuegos el tráfico necesario para el servicio:
@@ -45,9 +46,11 @@
 - name: Configure kubeadm
   shell: kubeadm config images pull
 
-# Instalar el plugin CNI: 
+# Instalar el plugin CNI:
+# La red de PODs va por la red de gestión
 - name: kubeadm init --pod-network-cidr=<PODS_NETWORK>/PREFIX
-  command: kubeadm init --pod-network-cidr=10.0.10.0/24
+  # command: kubeadm init --pod-network-cidr=10.0.10.0/24
+  command: kubeadm init --pod-network-cidr=192.169.0.0/16
 
 - name: Generar join token
   command: kubeadm token create --print-join-command
@@ -87,7 +90,7 @@
 - name: 'Reinicio nodo'
   reboot:
     pre_reboot_delay: 5
-    post_reboot_delay: 30
+    post_reboot_delay: 180
     reboot_timeout: 3600
 
 # Instalación Ingress Controller (HAProxy)

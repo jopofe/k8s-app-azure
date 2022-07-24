@@ -1,7 +1,7 @@
 ---
 # tasks file for worker
-
-- hostname:
+- name: Set hostname
+  hostname:
     name: "{{ workerHostname }}"
 
 # Permitir en el cortafuegos el tráfico necesario para el servicio:

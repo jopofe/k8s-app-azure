@@ -1,16 +1,23 @@
+# Fichero de inventario
+# Evitamos que pida confirmación para establecer la relación de confianza entre hosts añadiendo un parámetro.
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=ansible
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
 # CLUSTER K8s NODES
 [k8s]
-20.108.47.83
-20.108.169.18
+master.pozuelo.com
+worker.pozuelo.com
 
 # MASTER NODE
 [master]
-20.108.47.83
+master.pozuelo.com
 
 # WORKER NODE
 [worker]
-20.108.169.18
+worker.pozuelo.com
 
 # NFS NODE
 [nfs]
-20.108.47.219
+nfs.pozuelo.com

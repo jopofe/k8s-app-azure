@@ -1,6 +1,21 @@
 ---
 
 # tasks file for k8s
+# MASTER y WORKER
+
+# Antes de proceder con los requrimientos de K8s, montamos el directorio compartido con el NFS para el despliegue de la aplicación.
+# Creación del directorio compartido. Al ser necesario en los 3 nodos, colocamos la task en el PLAYBOOK common.
+
+# Montamos el directorio
+- name: Mount path
+  mount:
+    fstype: nfs
+    opts: defaults
+    dump: 0
+    passno: 0
+    state: mounted
+    src: "nfs.pozuelo.com:/mnt/app"
+    path: "/mnt/app"
 
 # Habilitar transparent masquerading
 # https://docs.ansible.com/ansible/2.9/modules/modprobe_module.html
