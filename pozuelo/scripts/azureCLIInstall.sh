@@ -1,3 +1,4 @@
+#!/bin/bash
 # Documentación Oficial de Microsoft
 # https://docs.microsoft.com/es-es/cli/azure/install-azure-cli-linux?pivots=apt
 

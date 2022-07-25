@@ -1,0 +1,50 @@
+---
+
+# NFS Role
+# https://docs.ansible.com/ansible/2.9/modules/dnf_module.html
+
+# Manage Hostname
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/hostname_module.html
+- name: Set hostname
+  hostname:
+    name: "{{ nfsHostname }}"
+
+# FW ya instalado y levantado en la ejecución del PLAYBOOK.
+# Se debe instalar "nfs-utils", pero hay que hacerlo en todos los nodos. Por ello se ejecutó el en PLAYBOOK common.
+
+- name: Adding /etc/exports folder
+  lineinfile:
+    path: /etc/exports
+    state: present
+    line: "/mnt/app  10.0.10.0/24(rw,sync,no_subtree_check)" # Añadimos la red
+
+- name: NFS Run
+  systemd: 
+    name: nfs-server
+    state: started
+    daemon_reload: yes
+    enabled: yes
+
+- name: Export System Files 
+  command: exportfs -arv # Necesario utilizar en este caso el módulo command
+
+- name: Checking export
+  command: exportfs -s
+
+- name: Adding ports FW
+  firewalld:
+    service: "{{ item }}"
+    state: enabled
+    permanent: yes
+    immediate: yes
+  with_items: 
+    - "nfs"
+    - "rpc-bind"
+    - "mountd"
+
+# Al no poder hacer reload del servicio con state, lo hacemos mediante systemd
+# https://docs.ansible.com/ansible/2.5/modules/firewalld_module.html
+- name: Restart service firewalld
+  systemd:
+    name: firewalld
+    state: reloaded

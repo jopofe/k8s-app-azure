@@ -1,0 +1,16 @@
+vagrant/.vagrant/machines/master/virtualbox/action_provision
+vagrant/.vagrant/machines/master/virtualbox/action_set_name
+vagrant/.vagrant/machines/master/virtualbox/id
+vagrant/.vagrant/machines/master/virtualbox/index_uuid
+vagrant/.vagrant/machines/master/virtualbox/private_key
+vagrant/.vagrant/machines/nfs/virtualbox/action_provision
+vagrant/.vagrant/machines/nfs/virtualbox/action_set_name
+vagrant/.vagrant/machines/nfs/virtualbox/id
+vagrant/.vagrant/machines/nfs/virtualbox/index_uuid
+vagrant/.vagrant/machines/nfs/virtualbox/private_key
+vagrant/.vagrant/machines/worker/virtualbox/action_provision
+vagrant/.vagrant/machines/worker/virtualbox/action_set_name
+vagrant/.vagrant/machines/worker/virtualbox/id
+vagrant/.vagrant/machines/worker/virtualbox/index_uuid
+vagrant/.vagrant/machines/worker/virtualbox/private_key
+terraform/.terraform/providers/registry.terraform.io/hashicorp/azurerm/3.10.0/linux_amd64/terraform-provider-azurerm_v3.10.0_x5

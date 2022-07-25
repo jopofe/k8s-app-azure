@@ -1,0 +1,108 @@
+[vagrant@nfs ~]$ ./nfsDeploy.sh
+CentOS Stream 8 - AppStream                                                               5.3 MB/s |  24 MB     00:04    CentOS Stream 8 - BCentOS Stream 8 - BaseOS                                                                                    9.1 MB/s |  23 MB     00:02
+CentOS Stream 8 - Extras                                                                                     68 kB/s |  18 kB     00:00
+Package firewalld-0.8.2-6.el8.noarch is already installed.
+Dependencies resolved.
+============================================================================================================================================
+ Package                                   Architecture                Version                            Repository                   Size
+============================================================================================================================================
+Upgrading:
+ firewalld                                 noarch                      0.9.3-13.el8                       baseos                      503 k
+ firewalld-filesystem                      noarch                      0.9.3-13.el8                       baseos                       78 k
+ python3-firewall                          noarch                      0.9.3-13.el8                       baseos                      434 k
+
+Transaction Summary
+============================================================================================================================================
+Upgrade  3 Packages
+
+Total download size: 1.0 M
+Downloading Packages:
+(1/3): firewalld-filesystem-0.9.3-13.el8.noarch.rpm                                                         425 kB/s |  78 kB     00:00
+(2/3): python3-firewall-0.9.3-13.el8.noarch.rpm                                                             1.5 MB/s | 434 kB     00:00
+(3/3): firewalld-0.9.3-13.el8.noarch.rpm                                                                    1.6 MB/s | 503 kB     00:00
+--------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                       1.7 MB/s | 1.0 MB     00:00
+warning: /var/cache/dnf/baseos-00fe51d07def85f0/packages/firewalld-0.9.3-13.el8.noarch.rpm: Header V3 RSA/SHA256 Signature, key ID 8483c65d: NOKEY
+CentOS Stream 8 - BaseOS                                                                                    1.6 MB/s | 1.6 kB     00:00
+Importing GPG key 0x8483C65D:
+ Userid     : "CentOS (CentOS Official Signing Key) <security@centos.org>"
+ Fingerprint: 99DB 70FA E1D7 CE22 7FB6 4882 05B5 55B3 8483 C65D
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+Key imported successfully
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                    1/1
+  Running scriptlet: python3-firewall-0.9.3-13.el8.noarch                                                                               1/1
+  Upgrading        : python3-firewall-0.9.3-13.el8.noarch                                                                               1/6
+  Upgrading        : firewalld-filesystem-0.9.3-13.el8.noarch                                                                           2/6
+  Upgrading        : firewalld-0.9.3-13.el8.noarch                                                                                      3/6
+  Running scriptlet: firewalld-0.9.3-13.el8.noarch                                                                                      3/6
+  Running scriptlet: firewalld-0.8.2-6.el8.noarch                                                                                       4/6
+  Cleanup          : firewalld-0.8.2-6.el8.noarch                                                                                       4/6
+  Running scriptlet: firewalld-0.8.2-6.el8.noarch                                                                                       4/6
+  Cleanup          : firewalld-filesystem-0.8.2-6.el8.noarch                                                                            5/6
+  Cleanup          : python3-firewall-0.8.2-6.el8.noarch                                                                                6/6
+  Running scriptlet: python3-firewall-0.8.2-6.el8.noarch                                                                                6/6
+  Verifying        : firewalld-0.9.3-13.el8.noarch                                                                                      1/6
+  Verifying        : firewalld-0.8.2-6.el8.noarch                                                                                       2/6
+  Verifying        : firewalld-filesystem-0.9.3-13.el8.noarch                                                                           3/6
+  Verifying        : firewalld-filesystem-0.8.2-6.el8.noarch                                                                            4/6
+  Verifying        : python3-firewall-0.9.3-13.el8.noarch                                                                               5/6
+  Verifying        : python3-firewall-0.8.2-6.el8.noarch                                                                                6/6
+
+Upgraded:
+  firewalld-0.9.3-13.el8.noarch           firewalld-filesystem-0.9.3-13.el8.noarch           python3-firewall-0.9.3-13.el8.noarch
+
+Complete!
+Created symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service → /usr/lib/systemd/system/firewalld.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/firewalld.service → /usr/lib/systemd/system/firewalld.service.
+Last metadata expiration check: 0:00:05 ago on Mon 18 Jul 2022 09:03:09 PM UTC.
+Package nfs-utils-1:2.3.3-41.el8.x86_64 is already installed.
+Dependencies resolved.
+============================================================================================================================================
+ Package                          Architecture                  Version                                 Repository                     Size
+============================================================================================================================================
+Upgrading:
+ nfs-utils                        x86_64                        1:2.3.3-56.el8                          baseos                        514 k
+
+Transaction Summary
+============================================================================================================================================
+Upgrade  1 Package
+
+Total download size: 514 k
+Downloading Packages:
+nfs-utils-2.3.3-56.el8.x86_64.rpm                                                                           1.7 MB/s | 514 kB     00:00
+--------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                       1.0 MB/s | 514 kB     00:00
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                    1/1
+  Running scriptlet: nfs-utils-1:2.3.3-56.el8.x86_64                                                                                    1/1
+  Running scriptlet: nfs-utils-1:2.3.3-56.el8.x86_64                                                                                    1/2
+  Upgrading        : nfs-utils-1:2.3.3-56.el8.x86_64                                                                                    1/2
+  Running scriptlet: nfs-utils-1:2.3.3-56.el8.x86_64                                                                                    1/2
+  Running scriptlet: nfs-utils-1:2.3.3-41.el8.x86_64                                                                                    2/2
+  Cleanup          : nfs-utils-1:2.3.3-41.el8.x86_64                                                                                    2/2
+  Running scriptlet: nfs-utils-1:2.3.3-41.el8.x86_64                                                                                    2/2
+  Verifying        : nfs-utils-1:2.3.3-56.el8.x86_64                                                                                    1/2
+  Verifying        : nfs-utils-1:2.3.3-41.el8.x86_64                                                                                    2/2
+
+Upgraded:
+  nfs-utils-1:2.3.3-56.el8.x86_64
+
+Complete!
+Created symlink /etc/systemd/system/multi-user.target.wants/nfs-server.service → /usr/lib/systemd/system/nfs-server.service.
+exporting 192.168.56.0/24:/mnt/app
+/mnt/app  192.168.56.0/24(sync,wdelay,hide,no_subtree_check,sec=sys,rw,secure,root_squash,no_all_squash)
+success
+success
+success
+success
+success
+success

@@ -1,0 +1,44 @@
+# Playbook que ejecuta el despliegue de NFS y K8s cluster
+---
+- name: 'Despliegue NFS & K8s Cluster'
+  hosts: all
+  remote_user: "{{ remoteUser }}"
+  become: true
+  vars_files:
+    - vars.yml
+  tasks:
+    # ROL NFS
+    - name: 'Despliegue NFS'
+      include_role:
+        name: nfs
+      when: inventory_hostname in groups['nfs']
+      tags: nfs
+
+    # ROL K8s
+    - name: 'Despliegue K8s'
+      include_role:
+        name: k8s
+      when: inventory_hostname in groups['k8s']
+      tags: k8s
+
+    # ROL MASTER
+    - name: 'Despliegue Master'
+      include_role:
+        name: master
+      when: inventory_hostname in groups['master']
+      tags: k8s
+
+    # ROL WORKER
+    - name: 'Despliegue Worker'
+      include_role:
+        name: worker
+      when: inventory_hostname in groups['worker']
+      tags: k8s
+
+    # ROL APP
+    # Acción a realizar sobre el MASTER
+    - name: Despliegue de aplicación
+      include_role:
+        name: app
+      when: inventory_hostname in groups['master']
+      tags: k8s

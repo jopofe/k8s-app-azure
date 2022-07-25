@@ -84,14 +84,44 @@ variable "ssh_user" {
 
 * recursos.tf - Uno o más ficheros definiendo los objectos a crear por Terraform.
 
-# PASOS
+# STEPS
 
 Se crea el directorio **pozuelo** que contiene información importante para el desarrollo del caso práctico.
+
 1. Despliegue Docker container Ubuntu 20.04.4
 2. Instalación TERRAFORM
 3. Instalación azure-cli
 
-4. Despliegue infra TERRAFORM.
+4. VMs:
+- Selección de las máquinas a desplegar.
+- Cumplir requisitos: IP pública, CPU, RAM...
+5. Despliegue infra AZ TERRAFORM 1 VM.
+6. Despliegue infra AZ TERRAFORM 3 VMs.
+7. Despliegue 3 VMs con VAGRANT en local.
 
-####
+8. Despliegue ANSIBLE.
+- Configuraciones comunes.
+- Despliegue K8s.
+- Despliegue aplicación en almacenamiento persistente.
+
+# NOTAS
+
 - Hay que evitar incluir el fichero de providers resultado del init con TERRAFORM, ya que devolverá error al subirlo a GITHUB.
+- Puedo ver que las reglas están correctamente abiertas con:
+- https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/sec-viewing_current_status_and_settings_of_firewalld#sec-Viewing_Current_firewalld_Settings
+
+[ansible@vmNFS ~]$ sudo firewall-cmd --list-all
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: eth0
+  sources:
+  services: cockpit dhcpv6-client mountd nfs rpc-bind ssh
+  ports:
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:

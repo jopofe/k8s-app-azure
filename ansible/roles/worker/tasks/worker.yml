@@ -1,0 +1,33 @@
+---
+# tasks file for worker
+- name: Set hostname
+  hostname:
+    name: "{{ workerHostname }}"
+
+# Permitir en el cortafuegos el tráfico necesario para el servicio:
+- name: Allow FW ports
+  firewalld:
+    permanent: yes
+    immediate: yes
+    port: "{{ item.port }}/{{ item.proto }}"
+    state: "{{ item.state }}"
+  with_items:
+    - {port: "8285", proto: "udp", state: "enabled"}
+    - {port: "8472", proto: "udp", state: "enabled"}
+    - {port: "10250", proto: "tcp", state: "enabled"}
+    - {port: "30000-32767", proto: "tcp", state: "enabled"}
+
+# Al no poder hacer reload del servicio con state, lo hacemos mediante systemd
+# https://docs.ansible.com/ansible/2.5/modules/firewalld_module.html
+- name: Restart service firewalld
+  systemd:
+    name: firewalld
+    state: reloaded
+
+# Desde el rol de master almacenamos el token en local
+- name: Copiar joinToken al WORKER
+  copy: src=./joinToken dest=/tmp/joinToken.sh
+
+# Ejecutamos el join
+- name: Añadir WORKER al cluster
+  command: sh /tmp/joinToken.sh

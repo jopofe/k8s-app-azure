@@ -1,3 +1,4 @@
+#!/bin/bash
 # Documentación oficial de TERRAFORM
 # https://www.terraform.io/downloads
 # https://learn.hashicorp.com/tutorials/terraform/install-cli
