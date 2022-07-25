@@ -57,7 +57,7 @@
 
 # Instalación de CRI-O
 # Utilizar get_url module
-# OJO !!!! Estamos usando CentOS_8_Stream !!!!
+# OJO !!!! Estamos usando CentOS_8_Stream !!!! Lo indicamos en la URL
 - name: Adding repos
   shell: |
     VERSION=1.24

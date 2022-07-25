@@ -1,2 +1,4 @@
 ---
 # vars file for app
+
+files: ['nfs-pv.yaml', 'nfs-pvc.yaml', 'grafana.yaml']

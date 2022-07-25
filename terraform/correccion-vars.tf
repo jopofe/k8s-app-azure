@@ -20,7 +20,7 @@ variable "ssh_user" {
   type        = string
   description = "Usuario para hacer ssh"
   # default     = "azureuser" # Usuario diferente de root
-  default     = "ansible" # Necesario para azure
+  default     = "ansible" # Necesario para ansible
 }
 
 variable "public_key_path" {

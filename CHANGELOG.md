@@ -92,3 +92,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Se mergea parte del código en playbookCommon.yaml ya que la creación del directorio compartido así como la instalación de NFS utils debe realizarse en todas las máquinas.
 - Se modifica el inventario "hosts" de ANSIBLE para que se pueda acceder a las máquinas sin la confirmación de la relación de confianza entre hosts. Se sustituyen las IPs por los nombres de dominio de cada VM.
+
+## [4.0.1] - 2022-07-25
+### Added
+- Se añaden los security groups en las VM en los ficheros de TERRAFORM.
+- Se añade todo el log de una ejecución completa de las 3 VMs en "pozuelo/logs/terraform" y en "pozuelo/logs/ansible"
+- se comenta "deploy.sh".
+- Se añade referencia a los ficheros de files para el rol de GRAFANA en las variables.
+
+### Changed
+- Se añade información al README.md
+- Se cambian de directorio los files para el despliegue de GRAFANA.

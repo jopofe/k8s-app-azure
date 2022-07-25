@@ -1,0 +1,299 @@
+root@536e18e71f38:/opt/terraform/ansible# ./deploy.sh
+
+PLAY [Despliegue Requisitos Comunes] *********************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************************************************************************
+ok: [nfs.pozuelo.com]
+ok: [worker.pozuelo.com]
+ok: [master.pozuelo.com]
+
+TASK [Registro nombres de máquina] ***********************************************************************************************************************************************************************************
+changed: [master.pozuelo.com] => (item=10.0.10.10 master.pozuelo.com )
+changed: [worker.pozuelo.com] => (item=10.0.10.10 master.pozuelo.com )
+changed: [nfs.pozuelo.com] => (item=10.0.10.10 master.pozuelo.com )
+changed: [master.pozuelo.com] => (item=10.0.10.11 worker.pozuelo.com)
+changed: [nfs.pozuelo.com] => (item=10.0.10.11 worker.pozuelo.com)
+changed: [worker.pozuelo.com] => (item=10.0.10.11 worker.pozuelo.com)
+changed: [master.pozuelo.com] => (item=10.0.10.12 nfs.pozuelo.com)
+changed: [nfs.pozuelo.com] => (item=10.0.10.12 nfs.pozuelo.com)
+changed: [worker.pozuelo.com] => (item=10.0.10.12 nfs.pozuelo.com)
+
+TASK [Upgrade all packages] ******************************************************************************************************************************************************************************************
+ok: [nfs.pozuelo.com]
+ok: [worker.pozuelo.com]
+ok: [master.pozuelo.com]
+
+TASK [Set timezone to Europe/Madrid] *********************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [nfs.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [Instalación Chronyd] *******************************************************************************************************************************************************************************************
+ok: [worker.pozuelo.com]
+ok: [master.pozuelo.com]
+ok: [nfs.pozuelo.com]
+
+TASK [Habilitamos servicio Chronyd] **********************************************************************************************************************************************************************************
+ok: [master.pozuelo.com]
+ok: [nfs.pozuelo.com]
+ok: [worker.pozuelo.com]
+
+TASK [Instalación firewalld y nfs-utils] *****************************************************************************************************************************************************************************
+changed: [nfs.pozuelo.com]
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [Creación directorio compartido por NFS] ************************************************************************************************************************************************************************
+changed: [nfs.pozuelo.com]
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [Enable firewalld] **********************************************************************************************************************************************************************************************
+changed: [nfs.pozuelo.com]
+changed: [master.pozuelo.com]
+changed: [worker.pozuelo.com]
+
+TASK [Disable SELinux] ***********************************************************************************************************************************************************************************************
+[WARNING]: SELinux state temporarily changed from 'enforcing' to 'permissive'. State change will take effect next reboot.
+changed: [nfs.pozuelo.com]
+changed: [master.pozuelo.com]
+changed: [worker.pozuelo.com]
+
+RUNNING HANDLER [Reinicio nodo] **************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [nfs.pozuelo.com]
+changed: [master.pozuelo.com]
+
+PLAY RECAP ***********************************************************************************************************************************************************************************************************
+master.pozuelo.com         : ok=11   changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+nfs.pozuelo.com            : ok=11   changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+worker.pozuelo.com         : ok=11   changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+PLAY [Despliegue NFS & K8s Cluster] **********************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************************************************************************
+ok: [nfs.pozuelo.com]
+ok: [master.pozuelo.com]
+ok: [worker.pozuelo.com]
+
+TASK [Despliegue NFS] ************************************************************************************************************************************************************************************************
+skipping: [master.pozuelo.com]
+skipping: [worker.pozuelo.com]
+
+TASK [nfs : include_tasks] *******************************************************************************************************************************************************************************************
+included: /opt/terraform/ansible/roles/nfs/tasks/nfs.yml for nfs.pozuelo.com
+
+TASK [nfs : Set hostname] ********************************************************************************************************************************************************************************************
+changed: [nfs.pozuelo.com]
+
+TASK [nfs : Adding /etc/exports folder] ******************************************************************************************************************************************************************************
+changed: [nfs.pozuelo.com]
+
+TASK [nfs : NFS Run] *************************************************************************************************************************************************************************************************
+changed: [nfs.pozuelo.com]
+
+TASK [nfs : Export System Files] *************************************************************************************************************************************************************************************
+changed: [nfs.pozuelo.com]
+
+TASK [nfs : Checking export] *****************************************************************************************************************************************************************************************
+changed: [nfs.pozuelo.com]
+
+TASK [nfs : Adding ports FW] *****************************************************************************************************************************************************************************************
+changed: [nfs.pozuelo.com] => (item=nfs)
+changed: [nfs.pozuelo.com] => (item=rpc-bind)
+changed: [nfs.pozuelo.com] => (item=mountd)
+
+TASK [nfs : Restart service firewalld] *******************************************************************************************************************************************************************************
+changed: [nfs.pozuelo.com]
+
+TASK [Despliegue K8s] ************************************************************************************************************************************************************************************************
+skipping: [nfs.pozuelo.com]
+
+TASK [k8s : include_tasks] *******************************************************************************************************************************************************************************************
+included: /opt/terraform/ansible/roles/k8s/tasks/k8s.yml for master.pozuelo.com, worker.pozuelo.com
+
+TASK [k8s : Mount path] **********************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : Load kernel module br_netfilter] *************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : Add masquerade] ******************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : Reinicio FW] *********************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : Añadimos la información en el archivo k8s.config] ********************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : sysctl --system] *****************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : Deactivate SWAP] *****************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : Adding repos] ********************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : Instalación cri-o] ***************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : Creamos crio.conf] ***************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : Añadimos las líneas correspondientes] ********************************************************************************************************************************************************************
+changed: [master.pozuelo.com] => (item=overlay)
+changed: [worker.pozuelo.com] => (item=overlay)
+changed: [worker.pozuelo.com] => (item=br_netfilter)
+changed: [master.pozuelo.com] => (item=br_netfilter)
+
+TASK [k8s : Habilitar cri-o] *****************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : Habilitar repo K8s] **************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : Instalación K8s] *****************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [k8s : Habilitar e iniciar el servicio de kubelet] **************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+changed: [master.pozuelo.com]
+
+TASK [Despliegue Master] *********************************************************************************************************************************************************************************************
+skipping: [worker.pozuelo.com]
+skipping: [nfs.pozuelo.com]
+
+TASK [master : include_tasks] ****************************************************************************************************************************************************************************************
+included: /opt/terraform/ansible/roles/master/tasks/master.yml for master.pozuelo.com
+
+TASK [master : Set hostname] *****************************************************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [master : Allow FW ports] ***************************************************************************************************************************************************************************************
+changed: [master.pozuelo.com] => (item={'port': '6443', 'proto': 'tcp', 'state': 'enabled'})
+changed: [master.pozuelo.com] => (item={'port': '2379-2380', 'proto': 'tcp', 'state': 'enabled'})
+changed: [master.pozuelo.com] => (item={'port': '10250-10252', 'proto': 'tcp', 'state': 'enabled'})
+changed: [master.pozuelo.com] => (item={'port': '10255', 'proto': 'tcp', 'state': 'enabled'})
+changed: [master.pozuelo.com] => (item={'port': '8285', 'proto': 'udp', 'state': 'enabled'})
+changed: [master.pozuelo.com] => (item={'port': '8472', 'proto': 'udp', 'state': 'enabled'})
+
+TASK [master : Restart service firewalld] ****************************************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [master : Allow connections from WORKER node] *******************************************************************************************************************************************************************
+changed: [master.pozuelo.com] => (item=rule family=ipv4 source address=10.0.10.11/32 port port=6443 protocol=tcp accept)
+
+TASK [master : Restart service firewalld] ****************************************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [master : Configure kubeadm] ************************************************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [master : kubeadm init --pod-network-cidr=<PODS_NETWORK>/PREFIX] ************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [master : Generar join token] ***********************************************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [master : Sacar por pantalla el token] **************************************************************************************************************************************************************************
+ok: [master.pozuelo.com] => {
+    "msg": "Join Token: {'changed': True, 'stdout': 'kubeadm join 10.0.10.10:6443 --token 8p3egg.fdn7ji5ywv9mt7an --discovery-token-ca-cert-hash sha256:da6a370e437c15467317f1a51690ba115797873a45d9f7aee8fbdb92b548774d ', 'stderr': '', 'rc': 0, 'cmd': ['kubeadm', 'token', 'create', '--print-join-command'], 'start': '2022-07-25 10:33:58.879830', 'end': '2022-07-25 10:33:58.934206', 'delta': '0:00:00.054376', 'msg': '', 'stdout_lines': ['kubeadm join 10.0.10.10:6443 --token 8p3egg.fdn7ji5ywv9mt7an --discovery-token-ca-cert-hash sha256:da6a370e437c15467317f1a51690ba115797873a45d9f7aee8fbdb92b548774d '], 'stderr_lines': [], 'failed': False}"
+}
+
+TASK [master : Almacenar el token] ***********************************************************************************************************************************************************************************
+changed: [master.pozuelo.com -> localhost]
+
+TASK [master : Exportar la configuración de kubeadmin] ***************************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [master : Setup kubeconfig for root] ****************************************************************************************************************************************************************************
+changed: [master.pozuelo.com] => (item=mkdir -p /root/.kube)
+changed: [master.pozuelo.com] => (item=cp -i /etc/kubernetes/admin.conf /root/.kube/config)
+
+TASK [master : Cambio de permisos] ***********************************************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [master : Apply policy MASTER node] *****************************************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [master : Reinicio nodo] ****************************************************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [master : Instalación HAProxy] **********************************************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [Despliegue Worker] *********************************************************************************************************************************************************************************************
+skipping: [master.pozuelo.com]
+skipping: [nfs.pozuelo.com]
+
+TASK [worker : include_tasks] ****************************************************************************************************************************************************************************************
+included: /opt/terraform/ansible/roles/worker/tasks/worker.yml for worker.pozuelo.com
+
+TASK [worker : Set hostname] *****************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+
+TASK [worker : Allow FW ports] ***************************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com] => (item={'port': '8285', 'proto': 'udp', 'state': 'enabled'})
+changed: [worker.pozuelo.com] => (item={'port': '8472', 'proto': 'udp', 'state': 'enabled'})
+changed: [worker.pozuelo.com] => (item={'port': '10250', 'proto': 'tcp', 'state': 'enabled'})
+changed: [worker.pozuelo.com] => (item={'port': '30000-32767', 'proto': 'tcp', 'state': 'enabled'})
+
+TASK [worker : Restart service firewalld] ****************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+
+TASK [worker : Copiar joinToken al WORKER] ***************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+
+TASK [worker : Añadir WORKER al cluster] *****************************************************************************************************************************************************************************
+changed: [worker.pozuelo.com]
+
+TASK [Despliegue de aplicación] **************************************************************************************************************************************************************************************
+skipping: [worker.pozuelo.com]
+skipping: [nfs.pozuelo.com]
+
+TASK [app : include_tasks] *******************************************************************************************************************************************************************************************
+included: /opt/terraform/ansible/roles/app/tasks/app.yml for master.pozuelo.com
+
+TASK [app : Creación namespace] **************************************************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [app : Copiar YAML] *********************************************************************************************************************************************************************************************
+changed: [master.pozuelo.com] => (item=nfs-pv.yaml)
+changed: [master.pozuelo.com] => (item=nfs-pvc.yaml)
+changed: [master.pozuelo.com] => (item=grafana.yaml)
+
+TASK [app : Creación recursos] ***************************************************************************************************************************************************************************************
+changed: [master.pozuelo.com] => (item=nfs-pv.yaml)
+changed: [master.pozuelo.com] => (item=nfs-pvc.yaml)
+changed: [master.pozuelo.com] => (item=grafana.yaml)
+
+TASK [app : Consulta recursos] ***************************************************************************************************************************************************************************************
+changed: [master.pozuelo.com]
+
+TASK [app : Resultado de consulta de recursos] ***********************************************************************************************************************************************************************
+ok: [master.pozuelo.com] => {
+    "msg": "NAME                      READY   UP-TO-DATE   AVAILABLE   AGE\ndeployment.apps/grafana   0/1     1            0           2s\n\nNAME                          READY   STATUS    RESTARTS   AGE\npod/grafana-8b4559cd8-f49t5   0/1     Pending   0          2s\n\nNAME              TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE\nservice/grafana   LoadBalancer   10.98.9.195   <pending>     3000:30674/TCP   1s"
+}
+
+PLAY RECAP ***********************************************************************************************************************************************************************************************************
+master.pozuelo.com         : ok=40   changed=34   unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+nfs.pozuelo.com            : ok=9    changed=7    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0
+worker.pozuelo.com         : ok=23   changed=20   unreachable=0    failed=0    skipped=3    rescued=0    ignored=0
+
+root@536e18e71f38:/opt/terraform/ansible#

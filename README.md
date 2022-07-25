@@ -87,6 +87,7 @@ variable "ssh_user" {
 # STEPS
 
 Se crea el directorio **pozuelo** que contiene información importante para el desarrollo del caso práctico.
+
 1. Despliegue Docker container Ubuntu 20.04.4
 2. Instalación TERRAFORM
 3. Instalación azure-cli
@@ -97,15 +98,17 @@ Se crea el directorio **pozuelo** que contiene información importante para el d
 5. Despliegue infra AZ TERRAFORM 1 VM.
 6. Despliegue infra AZ TERRAFORM 3 VMs.
 7. Despliegue 3 VMs con VAGRANT en local.
+
 8. Despliegue ANSIBLE.
+- Configuraciones comunes.
+- Despliegue K8s.
+- Despliegue aplicación en almacenamiento persistente.
 
 # NOTAS
 
 - Hay que evitar incluir el fichero de providers resultado del init con TERRAFORM, ya que devolverá error al subirlo a GITHUB.
-
-
 - Puedo ver que las reglas están correctamente abiertas con:
-# https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/sec-viewing_current_status_and_settings_of_firewalld#sec-Viewing_Current_firewalld_Settings
+- https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/sec-viewing_current_status_and_settings_of_firewalld#sec-Viewing_Current_firewalld_Settings
 
 [ansible@vmNFS ~]$ sudo firewall-cmd --list-all
 public (active)
@@ -122,4 +125,3 @@ public (active)
   source-ports:
   icmp-blocks:
   rich rules:
-

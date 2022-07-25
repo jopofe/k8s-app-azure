@@ -1,0 +1,626 @@
+root@536e18e71f38:/opt/terraform/terraform# terraform plan -out=azureVMs
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # azurerm_linux_virtual_machine.vm_master will be created
+  + resource "azurerm_linux_virtual_machine" "vm_master" {
+      + admin_username                  = "ansible"
+      + allow_extension_operations      = true
+      + computer_name                   = (known after apply)
+      + disable_password_authentication = true
+      + extensions_time_budget          = "PT1H30M"
+      + id                              = (known after apply)
+      + location                        = "uksouth"
+      + max_bid_price                   = -1
+      + name                            = "vmMaster"
+      + network_interface_ids           = (known after apply)
+      + patch_mode                      = "ImageDefault"
+      + platform_fault_domain           = -1
+      + priority                        = "Regular"
+      + private_ip_address              = (known after apply)
+      + private_ip_addresses            = (known after apply)
+      + provision_vm_agent              = true
+      + public_ip_address               = (known after apply)
+      + public_ip_addresses             = (known after apply)
+      + resource_group_name             = "rg-pozuelo"
+      + size                            = "Standard_F2s_v2"
+      + virtual_machine_id              = (known after apply)
+
+      + admin_ssh_key {
+          + public_key = <<-EOT
+                ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC5k0MSBr3UhuKBB6tyK0tVwbgBuG+1CbV6LY7xP1Wu4JeAGGzhmePBWvpkkAhVOIHbRKIQtm63ra44mpVO/ndsv8kYiW2U+Wo3wIWZjgIj6lp3+KypN9BHPk2cfCkFKLLGwtjDielIfnb7yHgUvkD4HYzJ76/lkdgI8/q6a0vHdVzxCj0iLoBmt6BElyCoP9nX13Y12Dfu/V2g9Z1c1dwg1lYgVVk1dJ9w+eElsidkDxK1EYpYUZS0BGRuqmT5dWUeZlZD9EJRgHDYozLrBBeX7rUWvEKWX+SXzrCZOXaD0O7BJ6u0p/9U3BDEmAMBUVo+R+/UZOP+0XzbNppbxIDSETJMoZPY0zwdE2GMYgEmfjN8psF+ZILHM2XmFSNE4W75r9J0YoIvgTHnyTQcLD6Nh9Xo4bwvc0Q4Vx5cVbRjgtx3uG+v+2KNwRCtP8enOehAjio/306m2pO8uR9//LfK/zt3FssZdSDwO16tza0sLPMRAdZCUuxz3vKNcv5mjbk= root@fd88c40de3e5
+            EOT
+          + username   = "ansible"
+        }
+
+      + os_disk {
+          + caching                   = "ReadWrite"
+          + disk_size_gb              = (known after apply)
+          + name                      = (known after apply)
+          + storage_account_type      = "Standard_LRS"
+          + write_accelerator_enabled = false
+        }
+
+      + plan {
+          + name      = "centos-8-stream-free"
+          + product   = "centos-8-stream-free"
+          + publisher = "cognosys"
+        }
+
+      + source_image_reference {
+          + offer     = "centos-8-stream-free"
+          + publisher = "cognosys"
+          + sku       = "centos-8-stream-free"
+          + version   = "22.03.28"
+        }
+
+      + termination_notification {
+          + enabled = (known after apply)
+          + timeout = (known after apply)
+        }
+    }
+
+  # azurerm_linux_virtual_machine.vm_nfs will be created
+  + resource "azurerm_linux_virtual_machine" "vm_nfs" {
+      + admin_username                  = "ansible"
+      + allow_extension_operations      = true
+      + computer_name                   = (known after apply)
+      + disable_password_authentication = true
+      + extensions_time_budget          = "PT1H30M"
+      + id                              = (known after apply)
+      + location                        = "uksouth"
+      + max_bid_price                   = -1
+      + name                            = "vmNFS"
+      + network_interface_ids           = (known after apply)
+      + patch_mode                      = "ImageDefault"
+      + platform_fault_domain           = -1
+      + priority                        = "Regular"
+      + private_ip_address              = (known after apply)
+      + private_ip_addresses            = (known after apply)
+      + provision_vm_agent              = true
+      + public_ip_address               = (known after apply)
+      + public_ip_addresses             = (known after apply)
+      + resource_group_name             = "rg-pozuelo"
+      + size                            = "Standard_F2"
+      + virtual_machine_id              = (known after apply)
+
+      + admin_ssh_key {
+          + public_key = <<-EOT
+                ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC5k0MSBr3UhuKBB6tyK0tVwbgBuG+1CbV6LY7xP1Wu4JeAGGzhmePBWvpkkAhVOIHbRKIQtm63ra44mpVO/ndsv8kYiW2U+Wo3wIWZjgIj6lp3+KypN9BHPk2cfCkFKLLGwtjDielIfnb7yHgUvkD4HYzJ76/lkdgI8/q6a0vHdVzxCj0iLoBmt6BElyCoP9nX13Y12Dfu/V2g9Z1c1dwg1lYgVVk1dJ9w+eElsidkDxK1EYpYUZS0BGRuqmT5dWUeZlZD9EJRgHDYozLrBBeX7rUWvEKWX+SXzrCZOXaD0O7BJ6u0p/9U3BDEmAMBUVo+R+/UZOP+0XzbNppbxIDSETJMoZPY0zwdE2GMYgEmfjN8psF+ZILHM2XmFSNE4W75r9J0YoIvgTHnyTQcLD6Nh9Xo4bwvc0Q4Vx5cVbRjgtx3uG+v+2KNwRCtP8enOehAjio/306m2pO8uR9//LfK/zt3FssZdSDwO16tza0sLPMRAdZCUuxz3vKNcv5mjbk= root@fd88c40de3e5
+            EOT
+          + username   = "ansible"
+        }
+
+      + os_disk {
+          + caching                   = "ReadWrite"
+          + disk_size_gb              = (known after apply)
+          + name                      = (known after apply)
+          + storage_account_type      = "Standard_LRS"
+          + write_accelerator_enabled = false
+        }
+
+      + plan {
+          + name      = "centos-8-stream-free"
+          + product   = "centos-8-stream-free"
+          + publisher = "cognosys"
+        }
+
+      + source_image_reference {
+          + offer     = "centos-8-stream-free"
+          + publisher = "cognosys"
+          + sku       = "centos-8-stream-free"
+          + version   = "22.03.28"
+        }
+
+      + termination_notification {
+          + enabled = (known after apply)
+          + timeout = (known after apply)
+        }
+    }
+
+  # azurerm_linux_virtual_machine.vm_worker will be created
+  + resource "azurerm_linux_virtual_machine" "vm_worker" {
+      + admin_username                  = "ansible"
+      + allow_extension_operations      = true
+      + computer_name                   = (known after apply)
+      + disable_password_authentication = true
+      + extensions_time_budget          = "PT1H30M"
+      + id                              = (known after apply)
+      + location                        = "uksouth"
+      + max_bid_price                   = -1
+      + name                            = "vmWorker"
+      + network_interface_ids           = (known after apply)
+      + patch_mode                      = "ImageDefault"
+      + platform_fault_domain           = -1
+      + priority                        = "Regular"
+      + private_ip_address              = (known after apply)
+      + private_ip_addresses            = (known after apply)
+      + provision_vm_agent              = true
+      + public_ip_address               = (known after apply)
+      + public_ip_addresses             = (known after apply)
+      + resource_group_name             = "rg-pozuelo"
+      + size                            = "Standard_F2s_v2"
+      + virtual_machine_id              = (known after apply)
+
+      + admin_ssh_key {
+          + public_key = <<-EOT
+                ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC5k0MSBr3UhuKBB6tyK0tVwbgBuG+1CbV6LY7xP1Wu4JeAGGzhmePBWvpkkAhVOIHbRKIQtm63ra44mpVO/ndsv8kYiW2U+Wo3wIWZjgIj6lp3+KypN9BHPk2cfCkFKLLGwtjDielIfnb7yHgUvkD4HYzJ76/lkdgI8/q6a0vHdVzxCj0iLoBmt6BElyCoP9nX13Y12Dfu/V2g9Z1c1dwg1lYgVVk1dJ9w+eElsidkDxK1EYpYUZS0BGRuqmT5dWUeZlZD9EJRgHDYozLrBBeX7rUWvEKWX+SXzrCZOXaD0O7BJ6u0p/9U3BDEmAMBUVo+R+/UZOP+0XzbNppbxIDSETJMoZPY0zwdE2GMYgEmfjN8psF+ZILHM2XmFSNE4W75r9J0YoIvgTHnyTQcLD6Nh9Xo4bwvc0Q4Vx5cVbRjgtx3uG+v+2KNwRCtP8enOehAjio/306m2pO8uR9//LfK/zt3FssZdSDwO16tza0sLPMRAdZCUuxz3vKNcv5mjbk= root@fd88c40de3e5
+            EOT
+          + username   = "ansible"
+        }
+
+      + os_disk {
+          + caching                   = "ReadWrite"
+          + disk_size_gb              = (known after apply)
+          + name                      = (known after apply)
+          + storage_account_type      = "Standard_LRS"
+          + write_accelerator_enabled = false
+        }
+
+      + plan {
+          + name      = "centos-8-stream-free"
+          + product   = "centos-8-stream-free"
+          + publisher = "cognosys"
+        }
+
+      + source_image_reference {
+          + offer     = "centos-8-stream-free"
+          + publisher = "cognosys"
+          + sku       = "centos-8-stream-free"
+          + version   = "22.03.28"
+        }
+
+      + termination_notification {
+          + enabled = (known after apply)
+          + timeout = (known after apply)
+        }
+    }
+
+  # azurerm_network_interface.nic_master will be created
+  + resource "azurerm_network_interface" "nic_master" {
+      + applied_dns_servers           = (known after apply)
+      + dns_servers                   = (known after apply)
+      + enable_accelerated_networking = false
+      + enable_ip_forwarding          = false
+      + id                            = (known after apply)
+      + internal_dns_name_label       = (known after apply)
+      + internal_domain_name_suffix   = (known after apply)
+      + location                      = "uksouth"
+      + mac_address                   = (known after apply)
+      + name                          = "vnicMaster"
+      + private_ip_address            = (known after apply)
+      + private_ip_addresses          = (known after apply)
+      + resource_group_name           = "rg-pozuelo"
+      + virtual_machine_id            = (known after apply)
+
+      + ip_configuration {
+          + gateway_load_balancer_frontend_ip_configuration_id = (known after apply)
+          + name                                               = "internal"
+          + primary                                            = (known after apply)
+          + private_ip_address                                 = "10.0.10.10"
+          + private_ip_address_allocation                      = "Static"
+          + private_ip_address_version                         = "IPv4"
+          + public_ip_address_id                               = (known after apply)
+          + subnet_id                                          = (known after apply)
+        }
+    }
+
+  # azurerm_network_interface.nic_nfs will be created
+  + resource "azurerm_network_interface" "nic_nfs" {
+      + applied_dns_servers           = (known after apply)
+      + dns_servers                   = (known after apply)
+      + enable_accelerated_networking = false
+      + enable_ip_forwarding          = false
+      + id                            = (known after apply)
+      + internal_dns_name_label       = (known after apply)
+      + internal_domain_name_suffix   = (known after apply)
+      + location                      = "uksouth"
+      + mac_address                   = (known after apply)
+      + name                          = "vnicNFS"
+      + private_ip_address            = (known after apply)
+      + private_ip_addresses          = (known after apply)
+      + resource_group_name           = "rg-pozuelo"
+      + virtual_machine_id            = (known after apply)
+
+      + ip_configuration {
+          + gateway_load_balancer_frontend_ip_configuration_id = (known after apply)
+          + name                                               = "internal"
+          + primary                                            = (known after apply)
+          + private_ip_address                                 = "10.0.10.12"
+          + private_ip_address_allocation                      = "Static"
+          + private_ip_address_version                         = "IPv4"
+          + public_ip_address_id                               = (known after apply)
+          + subnet_id                                          = (known after apply)
+        }
+    }
+
+  # azurerm_network_interface.nic_worker will be created
+  + resource "azurerm_network_interface" "nic_worker" {
+      + applied_dns_servers           = (known after apply)
+      + dns_servers                   = (known after apply)
+      + enable_accelerated_networking = false
+      + enable_ip_forwarding          = false
+      + id                            = (known after apply)
+      + internal_dns_name_label       = (known after apply)
+      + internal_domain_name_suffix   = (known after apply)
+      + location                      = "uksouth"
+      + mac_address                   = (known after apply)
+      + name                          = "vnicWorker"
+      + private_ip_address            = (known after apply)
+      + private_ip_addresses          = (known after apply)
+      + resource_group_name           = "rg-pozuelo"
+      + virtual_machine_id            = (known after apply)
+
+      + ip_configuration {
+          + gateway_load_balancer_frontend_ip_configuration_id = (known after apply)
+          + name                                               = "internal"
+          + primary                                            = (known after apply)
+          + private_ip_address                                 = "10.0.10.11"
+          + private_ip_address_allocation                      = "Static"
+          + private_ip_address_version                         = "IPv4"
+          + public_ip_address_id                               = (known after apply)
+          + subnet_id                                          = (known after apply)
+        }
+    }
+
+  # azurerm_network_interface_security_group_association.sec_group_association_master will be created
+  + resource "azurerm_network_interface_security_group_association" "sec_group_association_master" {
+      + id                        = (known after apply)
+      + network_interface_id      = (known after apply)
+      + network_security_group_id = (known after apply)
+    }
+
+  # azurerm_network_interface_security_group_association.sec_group_association_nfs will be created
+  + resource "azurerm_network_interface_security_group_association" "sec_group_association_nfs" {
+      + id                        = (known after apply)
+      + network_interface_id      = (known after apply)
+      + network_security_group_id = (known after apply)
+    }
+
+  # azurerm_network_interface_security_group_association.sec_group_association_worker will be created
+  + resource "azurerm_network_interface_security_group_association" "sec_group_association_worker" {
+      + id                        = (known after apply)
+      + network_interface_id      = (known after apply)
+      + network_security_group_id = (known after apply)
+    }
+
+  # azurerm_network_security_group.sec_group_master will be created
+  + resource "azurerm_network_security_group" "sec_group_master" {
+      + id                  = (known after apply)
+      + location            = "uksouth"
+      + name                = "secGroupMaster"
+      + resource_group_name = "rg-pozuelo"
+      + security_rule       = [
+          + {
+              + access                                     = "Allow"
+              + description                                = ""
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "22"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "SSH"
+              + priority                                   = 1001
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
+          + {
+              + access                                     = "Allow"
+              + description                                = ""
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "3000"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Grafana"
+              + priority                                   = 1005
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
+          + {
+              + access                                     = "Allow"
+              + description                                = ""
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "443"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "HTTPS"
+              + priority                                   = 1003
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
+          + {
+              + access                                     = "Allow"
+              + description                                = ""
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "80"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "HTTP"
+              + priority                                   = 1002
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
+          + {
+              + access                                     = "Allow"
+              + description                                = ""
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "8080"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "HTTP8080"
+              + priority                                   = 1004
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
+        ]
+      + tags                = {
+          + "environment" = "Master"
+        }
+    }
+
+  # azurerm_network_security_group.sec_group_nfs will be created
+  + resource "azurerm_network_security_group" "sec_group_nfs" {
+      + id                  = (known after apply)
+      + location            = "uksouth"
+      + name                = "secGroupNFS"
+      + resource_group_name = "rg-pozuelo"
+      + security_rule       = [
+          + {
+              + access                                     = "Allow"
+              + description                                = ""
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "22"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "SSH"
+              + priority                                   = 1001
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
+        ]
+      + tags                = {
+          + "environment" = "NFS"
+        }
+    }
+
+  # azurerm_network_security_group.sec_group_worker will be created
+  + resource "azurerm_network_security_group" "sec_group_worker" {
+      + id                  = (known after apply)
+      + location            = "uksouth"
+      + name                = "secGroupWorker"
+      + resource_group_name = "rg-pozuelo"
+      + security_rule       = [
+          + {
+              + access                                     = "Allow"
+              + description                                = ""
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "22"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "SSH"
+              + priority                                   = 1001
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
+        ]
+      + tags                = {
+          + "environment" = "Worker"
+        }
+    }
+
+  # azurerm_public_ip.ip_public_master will be created
+  + resource "azurerm_public_ip" "ip_public_master" {
+      + allocation_method       = "Static"
+      + fqdn                    = (known after apply)
+      + id                      = (known after apply)
+      + idle_timeout_in_minutes = 4
+      + ip_address              = (known after apply)
+      + ip_version              = "IPv4"
+      + location                = "uksouth"
+      + name                    = "PublicIpMaster"
+      + resource_group_name     = "rg-pozuelo"
+      + sku                     = "Basic"
+      + sku_tier                = "Regional"
+      + tags                    = {
+          + "environment" = "Master"
+        }
+    }
+
+  # azurerm_public_ip.ip_public_nfs will be created
+  + resource "azurerm_public_ip" "ip_public_nfs" {
+      + allocation_method       = "Static"
+      + fqdn                    = (known after apply)
+      + id                      = (known after apply)
+      + idle_timeout_in_minutes = 4
+      + ip_address              = (known after apply)
+      + ip_version              = "IPv4"
+      + location                = "uksouth"
+      + name                    = "PublicIpNFS"
+      + resource_group_name     = "rg-pozuelo"
+      + sku                     = "Basic"
+      + sku_tier                = "Regional"
+      + tags                    = {
+          + "environment" = "NFS"
+        }
+    }
+
+  # azurerm_public_ip.ip_public_worker will be created
+  + resource "azurerm_public_ip" "ip_public_worker" {
+      + allocation_method       = "Static"
+      + fqdn                    = (known after apply)
+      + id                      = (known after apply)
+      + idle_timeout_in_minutes = 4
+      + ip_address              = (known after apply)
+      + ip_version              = "IPv4"
+      + location                = "uksouth"
+      + name                    = "PublicIpWorker"
+      + resource_group_name     = "rg-pozuelo"
+      + sku                     = "Basic"
+      + sku_tier                = "Regional"
+      + tags                    = {
+          + "environment" = "Worker"
+        }
+    }
+
+  # azurerm_resource_group.rg will be created
+  + resource "azurerm_resource_group" "rg" {
+      + id       = (known after apply)
+      + location = "uksouth"
+      + name     = "rg-pozuelo"
+    }
+
+  # azurerm_subnet.subnet will be created
+  + resource "azurerm_subnet" "subnet" {
+      + address_prefixes                               = [
+          + "10.0.10.0/24",
+        ]
+      + enforce_private_link_endpoint_network_policies = false
+      + enforce_private_link_service_network_policies  = false
+      + id                                             = (known after apply)
+      + name                                           = "subnet-pozuelo"
+      + resource_group_name                            = "rg-pozuelo"
+      + virtual_network_name                           = "vnet-pozuelo"
+    }
+
+  # azurerm_virtual_network.vnet will be created
+  + resource "azurerm_virtual_network" "vnet" {
+      + address_space       = [
+          + "10.0.0.0/16",
+        ]
+      + dns_servers         = (known after apply)
+      + guid                = (known after apply)
+      + id                  = (known after apply)
+      + location            = "uksouth"
+      + name                = "vnet-pozuelo"
+      + resource_group_name = "rg-pozuelo"
+      + subnet              = (known after apply)
+    }
+
+Plan: 18 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + private_ip_master = (known after apply)
+  + private_ip_nfs    = (known after apply)
+  + private_ip_worker = (known after apply)
+  + public_ip_master  = (known after apply)
+  + public_ip_nfs     = (known after apply)
+  + public_ip_worker  = (known after apply)
+  + resource_group_id = (known after apply)
+  + vm_id_master      = (known after apply)
+  + vm_id_nfs         = (known after apply)
+  + vm_id_worker      = (known after apply)
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: azureVMs
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "azureVMs"
+root@536e18e71f38:/opt/terraform/terraform# terraform apply -auto-approve azureVMs
+azurerm_resource_group.rg: Creating...
+azurerm_resource_group.rg: Creation complete after 2s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo]
+azurerm_network_security_group.sec_group_nfs: Creating...
+azurerm_virtual_network.vnet: Creating...
+azurerm_public_ip.ip_public_worker: Creating...
+azurerm_public_ip.ip_public_master: Creating...
+azurerm_network_security_group.sec_group_worker: Creating...
+azurerm_public_ip.ip_public_nfs: Creating...
+azurerm_network_security_group.sec_group_master: Creating...
+azurerm_public_ip.ip_public_nfs: Creation complete after 3s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/publicIPAddresses/PublicIpNFS]
+azurerm_public_ip.ip_public_worker: Creation complete after 3s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/publicIPAddresses/PublicIpWorker]
+azurerm_public_ip.ip_public_master: Creation complete after 3s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/publicIPAddresses/PublicIpMaster]
+azurerm_network_security_group.sec_group_master: Creation complete after 5s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/networkSecurityGroups/secGroupMaster]
+azurerm_network_security_group.sec_group_nfs: Creation complete after 5s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/networkSecurityGroups/secGroupNFS]
+azurerm_network_security_group.sec_group_worker: Creation complete after 5s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/networkSecurityGroups/secGroupWorker]
+azurerm_virtual_network.vnet: Creation complete after 6s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/virtualNetworks/vnet-pozuelo]
+azurerm_subnet.subnet: Creating...
+azurerm_subnet.subnet: Creation complete after 4s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/virtualNetworks/vnet-pozuelo/subnets/subnet-pozuelo]
+azurerm_network_interface.nic_worker: Creating...
+azurerm_network_interface.nic_master: Creating...
+azurerm_network_interface.nic_nfs: Creating...
+azurerm_network_interface.nic_nfs: Creation complete after 3s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/networkInterfaces/vnicNFS]
+azurerm_network_interface_security_group_association.sec_group_association_nfs: Creating...
+azurerm_linux_virtual_machine.vm_nfs: Creating...
+azurerm_network_interface.nic_master: Creation complete after 4s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/networkInterfaces/vnicMaster]
+azurerm_network_interface_security_group_association.sec_group_association_master: Creating...
+azurerm_linux_virtual_machine.vm_master: Creating...
+azurerm_network_interface_security_group_association.sec_group_association_nfs: Creation complete after 1s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/networkInterfaces/vnicNFS|/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/networkSecurityGroups/secGroupNFS]
+azurerm_network_interface_security_group_association.sec_group_association_master: Creation complete after 1s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/networkInterfaces/vnicMaster|/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/networkSecurityGroups/secGroupMaster]
+azurerm_network_interface.nic_worker: Creation complete after 5s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/networkInterfaces/vnicWorker]
+azurerm_network_interface_security_group_association.sec_group_association_worker: Creating...
+azurerm_linux_virtual_machine.vm_worker: Creating...
+azurerm_network_interface_security_group_association.sec_group_association_worker: Creation complete after 1s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/networkInterfaces/vnicWorker|/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Network/networkSecurityGroups/secGroupWorker]
+azurerm_linux_virtual_machine.vm_nfs: Still creating... [10s elapsed]
+azurerm_linux_virtual_machine.vm_master: Still creating... [10s elapsed]
+azurerm_linux_virtual_machine.vm_worker: Still creating... [10s elapsed]
+azurerm_linux_virtual_machine.vm_nfs: Still creating... [20s elapsed]
+azurerm_linux_virtual_machine.vm_master: Still creating... [20s elapsed]
+azurerm_linux_virtual_machine.vm_worker: Still creating... [20s elapsed]
+azurerm_linux_virtual_machine.vm_master: Creation complete after 22s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Compute/virtualMachines/vmMaster]
+azurerm_linux_virtual_machine.vm_nfs: Still creating... [30s elapsed]
+azurerm_linux_virtual_machine.vm_worker: Still creating... [30s elapsed]
+azurerm_linux_virtual_machine.vm_nfs: Still creating... [40s elapsed]
+azurerm_linux_virtual_machine.vm_worker: Still creating... [40s elapsed]
+azurerm_linux_virtual_machine.vm_nfs: Still creating... [50s elapsed]
+azurerm_linux_virtual_machine.vm_worker: Still creating... [50s elapsed]
+azurerm_linux_virtual_machine.vm_nfs: Creation complete after 55s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Compute/virtualMachines/vmNFS]
+azurerm_linux_virtual_machine.vm_worker: Creation complete after 56s [id=/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Compute/virtualMachines/vmWorker]
+
+Apply complete! Resources: 18 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+private_ip_master = "10.0.10.10"
+private_ip_nfs = "10.0.10.12"
+private_ip_worker = "10.0.10.11"
+public_ip_master = "20.254.89.171"
+public_ip_nfs = "20.254.89.135"
+public_ip_worker = "20.254.89.170"
+resource_group_id = "/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo"
+vm_id_master = "/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Compute/virtualMachines/vmMaster"
+vm_id_nfs = "/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Compute/virtualMachines/vmNFS"
+vm_id_worker = "/subscriptions/10398870-f8a7-4284-9317-a78477bd3633/resourceGroups/rg-pozuelo/providers/Microsoft.Compute/virtualMachines/vmWorker"
