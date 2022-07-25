@@ -1,1 +1,49 @@
-<mxfile host="app.diagrams.net" modified="2022-07-25T12:23:56.359Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36" version="20.0.1" etag="BwFiHTWh89wwoyYTOBEn" type="github"><diagram id="asCGs2yCpSEjG4qc5d7P">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-07-25T12:41:19.933Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36" etag="-5fuYWPYIMfZibULuEc1" version="20.0.1" type="github">
+  <diagram id="asCGs2yCpSEjG4qc5d7P" name="Page-1">
+    <mxGraphModel dx="1430" dy="909" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="iyDVb25A1YljVRgsigqT-1" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Network_Interfaces.svg;" vertex="1" parent="1">
+          <mxGeometry x="360" y="390" width="68" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iyDVb25A1YljVRgsigqT-3" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/compute/VM_Images_Classic.svg;" vertex="1" parent="1">
+          <mxGeometry x="480" y="310" width="69" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="iyDVb25A1YljVRgsigqT-4" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon;prIcon=master" vertex="1" parent="1">
+          <mxGeometry x="260" y="440" width="50" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="iyDVb25A1YljVRgsigqT-5" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon;prIcon=node" vertex="1" parent="1">
+          <mxGeometry x="270" y="537" width="50" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="iyDVb25A1YljVRgsigqT-6" value="" style="sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon;prIcon=pod" vertex="1" parent="1">
+          <mxGeometry x="450" y="530" width="50" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="iyDVb25A1YljVRgsigqT-7" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://user-images.githubusercontent.com/31406378/108641411-f9374f00-7496-11eb-82a7-0fa2a9cc5f93.png;" vertex="1" parent="1">
+          <mxGeometry x="336" y="175" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="iyDVb25A1YljVRgsigqT-9" value="" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.laptop;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="189" y="30" width="450" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="iyDVb25A1YljVRgsigqT-11" value="Container" style="swimlane;" vertex="1" parent="1">
+          <mxGeometry x="318" y="60" width="191" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="iyDVb25A1YljVRgsigqT-8" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Ansible_logo.svg/640px-Ansible_logo.svg.png;" vertex="1" parent="iyDVb25A1YljVRgsigqT-11">
+          <mxGeometry x="78.42000000000002" y="115" width="40.58" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="iyDVb25A1YljVRgsigqT-14" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.returngis.net/wp-content/uploads/2022/01/Azure-CLI.png;" vertex="1" parent="iyDVb25A1YljVRgsigqT-11">
+          <mxGeometry x="138" y="120" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iyDVb25A1YljVRgsigqT-10" value="" style="sketch=0;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Docker.svg;" vertex="1" parent="1">
+          <mxGeometry x="250" y="190" width="48.78" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iyDVb25A1YljVRgsigqT-13" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.svgrepo.com/show/353464/azure.svg;" vertex="1" parent="1">
+          <mxGeometry x="349" y="593" width="129" height="129" as="geometry" />
+        </mxCell>
+        <mxCell id="iyDVb25A1YljVRgsigqT-12" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn-icons-png.flaticon.com/512/25/25231.png;" vertex="1" parent="1">
+          <mxGeometry x="330" y="90" width="46" height="46" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
